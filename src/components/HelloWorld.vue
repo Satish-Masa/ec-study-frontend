@@ -98,10 +98,13 @@ export default {
 <style scoped>
 h1, h2 {
   font-weight: normal;
+  text-align: center;
+  margin-bottom: 20px;
 }
 ul {
   list-style-type: none;
   padding: 0;
+  text-align: center;
 }
 li {
   display: inline-block;
