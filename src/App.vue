@@ -1,8 +1,14 @@
 <template>
   <div id="app">
     <myheader></myheader>
-    <img src="./assets/logo.png">
-    <router-view/>
+    <b-container class="bv-example-row">
+      <b-col col="8">
+        <div id="vuelogo">
+          <img src="./assets/logo.png">
+        </div>
+        <router-view/>
+      </b-col>
+    </b-container>
   </div>
 </template>
 
@@ -17,12 +23,9 @@ export default {
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+#vuelogo {
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 </style>
