@@ -1,26 +1,48 @@
 <template>
     <div>
         <b-form @submit="onSubmit">
-            <label for="feedback-user">User Name</label>
-            <b-input v-model="username" :state="Uservalidation" id="feedback-user"></b-input>
-            <b-form-invalid-feedback :state="Uservalidation">
-                Your user name must be 0-20 characters long.
-            </b-form-invalid-feedback>
-            <b-form-valid-feedback :state="Uservalidation">
-                Looks Good.
-            </b-form-valid-feedback>
+            
+            <b-form-group
+                id="input-group-1"
+                class="f-input"
+                label="Email Address"
+                label-for="input-1"
+            >
+                <b-form-input
+                    id="input-1"
+                    v-model="form.email"
+                    type="email"
+                    required
+                    placeholder="Enter Email"
+                ></b-form-input>
+            </b-form-group>
 
+            <b-form-group
+                id="input-group-2"
+                label="Password"
+                label-for="input-2"
+                class="f-input"
+            >
+                <b-form-input
+                    id="input-2"
+                    v-model="form.password"
+                    type="password"
+                    required
+                    placeholder="Enter Password"
+                    :state="Passvalidation"
+                ></b-form-input>
+                <b-form-invalid-feedback :state="Passvalidation">
+                    Your password must be 8-20 characters long, contain letters and numbers, and must not
+                    contain spaces, special characters, or emoji.
+                </b-form-invalid-feedback>
+                <b-form-valid-feedback :state="Passvalidation">
+                    Looks Good.
+                </b-form-valid-feedback>
+            </b-form-group>
 
-            <label for="text-password">Password</label>
-            <b-input type="password" id="text-password" aria-describedby="password-help-block" v-model="password" :state="Passvalidation"></b-input>
-            <b-form-invalid-feedback :state="Passvalidation">
-                Your password must be 8-20 characters long, contain letters and numbers, and must not
-                contain spaces, special characters, or emoji.
-            </b-form-invalid-feedback>
-            <b-form-valid-feedback :state="Passvalidation">
-                Looks Good.
-            </b-form-valid-feedback>
-            <b-button type="submit" variant="primary">Submit</b-button>
+            <div id="btnsubmit">
+                <b-button type="submit" variant="primary">Submit</b-button>
+            </div>
         </b-form>
     </div>
 </template>
@@ -31,17 +53,15 @@ export default {
     name: 'Signup',
     data() {
         return {
-            username: '',
-            password: '',
-            token: ''
+            form: {
+                email: '',
+                password: ''
+            }
         };
     },
     computed: {
-        Uservalidation() {
-            return this.username.length > 0 && this.username.length < 21
-        },
         Passvalidation() {
-            return this.password.length > 7 && this.password.length < 21
+            return this.form.password.length > 7 && this.form.password.length < 21
         }
     },
     methods: {
@@ -54,19 +74,30 @@ export default {
                 },
                 responseType: 'json'
             })
-            axios.post('/user/create', {
-                "name": this.username,
-                "password": this.password,
+            axios.post('/auth/signup', {
+                "email": this.form.email,
+                "password": this.form.password,
             })
-            .then(responce => (this.toke = responce.data.token))
+            .then(responce => {
+                console.log('status:', responce.status)
+                window.location.href = '/signin'
+            })
             .catch(function (error)  {
-                console.log(error.responce.statusText)
                 alert('Failed to Signup!!')
                 window.location.href = '/signup'
             })
-            document.cookie = 'token=' + this.token
-            window.location.href  = '/'
         }
     }
 }
 </script>
+
+<style>
+.f-input {
+    margin-bottom: 20px;
+}
+
+#btnsubmit {
+    text-align: center;
+    margin-top: 20px;
+}
+</style>
