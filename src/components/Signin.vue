@@ -1,5 +1,6 @@
 <template>
     <div>
+        <h2 id="tit">Login</h2>
         <b-form @submit="onSubmit">
             <b-form-group
                 id="input-group-1"
@@ -95,6 +96,10 @@ export default {
 <style>
 .f-input {
     margin-bottom: 20px;
+}
+
+#tit {
+    margin-bottom: 30px;
 }
 
 #btnsubmit {
