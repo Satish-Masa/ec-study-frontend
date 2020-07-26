@@ -12,7 +12,7 @@
                   値段：{{item.Price}}
               </p>
               <div slot="footer">
-                  <b-btn variant="primary" block>GO TO</b-btn>
+                  <b-btn :to="`/item/${ item.ID }`" variant="primary" block>GO TO</b-btn>
               </div>
           </b-card>
         </b-col>
