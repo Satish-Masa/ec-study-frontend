@@ -4,6 +4,7 @@ import BootstrapVue from 'bootstrap-vue'
 import HelloWorld from '@/components/HelloWorld'
 import Signin from '@/components/Signin'
 import Signup from '@/components/Signup'
+import Item from '@/components/Item'
 
 Vue.use(Router)
 Vue.use(BootstrapVue)
@@ -28,6 +29,11 @@ export default new Router({
       path: '/signin',
       name: 'Signin',
       component: Signin
+    },
+    {
+      path: '/item/:id',
+      name: 'Item',
+      component: Item
     }
   ]
 })
