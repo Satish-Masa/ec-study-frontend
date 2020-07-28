@@ -15,11 +15,34 @@
           </b-nav-form>
 
           <b-navbar-nav>
-            <b-nav-item href="/signup">Sign Up</b-nav-item>
-            <b-nav-item href="/signin">Login</b-nav-item>
+            <div v-if="!CheckLogin">
+              <b-nav-item href="/signup">Sign Up</b-nav-item>
+              <b-nav-item href="/signin">Login</b-nav-item>
+            </div>
+            <div v-if="CheckLogin">
+              <b-nav-item href="#">My Basket</b-nav-item>
+            </div>
           </b-navbar-nav>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
   </div>
 </template>
+
+<script>
+export default {
+  computed: {
+    CheckLogin: function() {
+      var cookies = document.cookie;
+      var cookieArray = cookies.split(';');
+      for (var c of cookieArray) {
+        var cArray = c.split('=');
+        if (cArray[0] == 'token') {
+          return true;
+        }
+      }
+      return false;
+    }
+  }
+}
+</script>
