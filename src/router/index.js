@@ -5,6 +5,7 @@ import HelloWorld from '@/components/HelloWorld'
 import Signin from '@/components/Signin'
 import Signup from '@/components/Signup'
 import Item from '@/components/Item'
+import BuyItem from '@/components/BuyItem'
 
 Vue.use(Router)
 Vue.use(BootstrapVue)
@@ -34,6 +35,11 @@ export default new Router({
       path: '/item/:id',
       name: 'Item',
       component: Item
+    },
+    {
+      path: '/item/:id/buy',
+      name: 'BuyItem',
+      component: BuyItem
     }
   ]
 })
