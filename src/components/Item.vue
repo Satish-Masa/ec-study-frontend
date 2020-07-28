@@ -8,7 +8,7 @@
           値段：{{item.Price}}
       </b-card-text>
       <div id="btn">
-        <b-button size="lg" pill href="#" variant="primary">購入する</b-button>
+        <b-button size="lg" pill :to="`/item/${ $route.params['id'] }/buy`" variant="primary">購入する</b-button>
       </div>
     </b-card>
 </div>
