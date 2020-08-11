@@ -6,6 +6,7 @@ import Signin from '@/components/Signin'
 import Signup from '@/components/Signup'
 import Item from '@/components/Item'
 import BuyItem from '@/components/BuyItem'
+import Cart from '@/components/Cart'
 
 Vue.use(Router)
 Vue.use(BootstrapVue)
@@ -37,9 +38,14 @@ export default new Router({
       component: Item
     },
     {
-      path: '/item/:id/buy',
+      path: '/item/buy',
       name: 'BuyItem',
       component: BuyItem
+    },
+    {
+      path: '/cart',
+      name: 'Cart',
+      component: Cart
     }
   ]
 })
