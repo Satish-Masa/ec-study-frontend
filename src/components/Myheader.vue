@@ -20,7 +20,7 @@
               <b-nav-item href="/signin">Login</b-nav-item>
             </div>
             <div v-if="CheckLogin">
-              <b-nav-item href="#">My Basket</b-nav-item>
+              <b-nav-item href="/cart">My Basket</b-nav-item>
             </div>
           </b-navbar-nav>
         </b-navbar-nav>
