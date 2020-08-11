@@ -9,10 +9,11 @@
                   img-top
                   class="card">
               <p class="card-text">
-                  値段：{{item.Price}}
+                  Stock: {{item.Stock}}
+                  Price：${{item.Price}}
               </p>
               <div slot="footer">
-                  <b-btn :to="`/item/${ item.ID }`" variant="primary" block>GO TO</b-btn>
+                  <b-btn :to="`/item/${ item.ID }`" variant="primary" block>Check!!</b-btn>
               </div>
           </b-card>
         </b-col>
