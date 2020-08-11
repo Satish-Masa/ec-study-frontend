@@ -80,7 +80,7 @@ export default {
                 "password": this.form.password,
             })
             .then(responce => {
-                this.token = responce.data
+                this.token = responce.data.Token
                 document.cookie = 'token=' + this.token
                 window.location.href = '/'
             })
