@@ -5,10 +5,11 @@
         {{item.Description}}
       </b-card-text>
       <b-card-text id="price">
-          値段：{{item.Price}}
+          Stock: {{item.Stock}}
+          Price：${{item.Price}}
       </b-card-text>
       <div id="btn">
-        <b-button size="lg" pill :to="`/item/${ $route.params['id'] }/buy`" variant="primary">購入する</b-button>
+        <b-button size="lg" pill v-on:click="AddCart" variant="primary">Add to Your Cart</b-button>
       </div>
     </b-card>
 </div>
@@ -39,7 +40,37 @@ export default {
         .catch(error => {
             console.log(error)
         })
-    } 
+    },
+    methods: {
+        AddCart() {
+            var cookies = document.cookie;
+            var cookieArray = cookies.split(';');
+            for (var c of cookieArray) {
+                var cArray = c.split('=');
+                if (cArray[0] == 'token') {
+                    var axios = Axios.create({
+                        baseURL: 'http://localhost:8080',
+                        headers: {
+                            'Authorization': 'Bearer ' + cArray[1],
+                            'Content-Type': 'application/json',
+                        },
+                        responseType: 'json'
+                    })
+                    
+                    axios.post('auth/item/add', {"id": this.$route.params['id']})
+                    .then(responce => {
+                        var to = "/item/buy"
+                        window.location.href = to
+                    })
+                    .catch(error => {
+                        console.log(error)
+                        window.location.href = '/signin'
+                    })
+                }
+            }
+            window.location.href = '/signin'
+        }
+    }
 }
 </script>
 
