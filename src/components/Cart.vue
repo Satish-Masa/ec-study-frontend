@@ -7,6 +7,7 @@
                     {{item.Description}}
                 </b-card-text>
                 <b-card-text id="price">
+                    Stock: {{item.Stock}}
                     Price：${{item.Price}}
                 </b-card-text>
                 </b-card>
