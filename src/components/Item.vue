@@ -59,8 +59,7 @@ export default {
                     
                     axios.post('auth/item/add', {"id": this.$route.params['id']})
                     .then(responce => {
-                        var to = "/item/buy"
-                        window.location.href = to
+                        window.location.href = '/item/buy'
                     })
                     .catch(error => {
                         console.log(error)
