@@ -6,7 +6,10 @@
                 <b-card-text id="desc">
                     {{item.Description}}
                 </b-card-text>
-                <b-card-text id="price">
+                <b-card-text class="num">
+                    Number: {{item.Number}}
+                </b-card-text>
+                <b-card-text class="num">
                     Stock: {{item.Stock}}
                     Price：${{item.Price}}
                 </b-card-text>
@@ -63,8 +66,9 @@ h4 {
     font-size: 1.5rem;
     margin-bottom: 4rem;
 }
-#price {
+.num {
     font-size: 2.0rem;
+    margin-bottom: 3rem;
 }
 
 .card-title {
