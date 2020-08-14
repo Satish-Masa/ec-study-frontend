@@ -4,12 +4,16 @@
       <b-card-text id="desc">
         {{item.Description}}
       </b-card-text>
-      <b-card-text id="price">
+      <b-card-text class="price">
           Stock: {{item.Stock}}
           Price：${{item.Price}}
       </b-card-text>
-      <div id="btn">
-        <b-button size="lg" pill v-on:click="AddCart" variant="primary">Add to Your Cart</b-button>
+      <div>
+        <label for="sb-inline" class="price">Number of Products</label>
+        <b-form-spinbutton id="sb-inline" v-model="value" min="1" :max="item.Stock" inline></b-form-spinbutton>
+        <div id="btn">
+            <b-button size="lg" pill v-on:click="AddCart" variant="primary">Add to Your Cart</b-button>
+        </div>
       </div>
     </b-card>
 </div>
@@ -23,6 +27,7 @@ export default {
     data () {
         return {
             item: null,
+            value: 1
         }
     },
     mounted() {
@@ -33,7 +38,9 @@ export default {
             },
             responseType: 'json'
         })
-        axios.post('/item', {"id": this.$route.params['id']})
+        axios.post('/item', {
+            "id": this.$route.params['id']
+        })
         .then(responce => {
             this.item = responce.data;
         })
@@ -57,17 +64,19 @@ export default {
                         responseType: 'json'
                     })
                     
-                    axios.post('auth/item/add', {"id": this.$route.params['id']})
+                    axios.post('auth/item/add', {
+                        "id": this.$route.params['id'],
+                        "number": this.value
+                    })
                     .then(responce => {
-                        window.location.href = '/item/buy'
+                        window.location.href = '/buy'
                     })
                     .catch(error => {
                         console.log(error)
-                        window.location.href = '/signin'
+                        window.alert("商品の追加に失敗しました")
                     })
                 }
             }
-            window.location.href = '/signin'
         }
     }
 }
@@ -82,7 +91,7 @@ h4 {
     font-size: 1.5rem;
     margin-bottom: 4rem;
 }
-#price {
+.price {
     font-size: 2.0rem;
 }
 #btn {
