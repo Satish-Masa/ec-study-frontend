@@ -42,7 +42,7 @@ export default new Router({
       component: Item
     },
     {
-      path: '/item/buy',
+      path: '/buy',
       name: 'BuyItem',
       component: BuyItem
     },
