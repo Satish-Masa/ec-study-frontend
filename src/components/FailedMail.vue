@@ -1,6 +1,6 @@
 <template>
     <div>
-    <h4>メールの確認が失敗しました</h4>
+    <h4>再度メールの確認をお願いします</h4>
     <b-form @submit="onSubmit">
         <b-form-group
             id="input-group-1"
