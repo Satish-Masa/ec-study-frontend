@@ -5,8 +5,7 @@
         {{item.Description}}
       </b-card-text>
       <b-card-text class="price">
-          Stock: {{item.Stock}}
-          Price：${{item.Price}}
+          Stock: {{item.Stock}}         Price：${{item.Price}}
       </b-card-text>
       <div>
         <label for="sb-inline" class="price">Number of Products</label>
@@ -69,7 +68,7 @@ export default {
                         "number": this.value
                     })
                     .then(responce => {
-                        window.location.href = '/buy'
+                        window.location.href = '/add'
                     })
                     .catch(error => {
                         console.log(error)

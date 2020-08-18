@@ -6,6 +6,7 @@ import HelloWorld from '@/components/HelloWorld'
 import Signin from '@/components/Signin'
 import Signup from '@/components/Signup'
 import Item from '@/components/Item'
+import AddItem from '@/components/AddItem'
 import BuyItem from '@/components/BuyItem'
 import Cart from '@/components/Cart'
 import SuccessMail from '@/components/SuccessMail'
@@ -40,6 +41,11 @@ export default new Router({
       path: '/item/:id',
       name: 'Item',
       component: Item
+    },
+    {
+      path: '/add',
+      name: 'AddItem',
+      component: AddItem
     },
     {
       path: '/buy',

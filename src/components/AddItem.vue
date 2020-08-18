@@ -1,6 +1,6 @@
 <template>
 <div>
-    <h4>商品を購入しました。</h4>
+    <h4>カートに追加しました。</h4>
     <div id="btn_home">
         <b-button size="lg" pill href="/" variant="primary">ホームに戻る</b-button>
     </div>
