@@ -9,8 +9,7 @@
                   img-top
                   class="card">
               <p class="card-text">
-                  Stock: {{item.Stock}}
-                  Price：${{item.Price}}
+                  Stock: {{item.Stock}}         Price：${{item.Price}}
               </p>
               <div slot="footer">
                   <b-btn :to="`/item/${ item.ID }`" variant="primary" block>Check!!</b-btn>
