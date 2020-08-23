@@ -11,6 +11,8 @@ import BuyItem from '@/components/BuyItem'
 import Cart from '@/components/Cart'
 import SuccessMail from '@/components/SuccessMail'
 import FailedMail from '@/components/FailedMail'
+import Ordered from '@/components/Ordered'
+import OrderedList from '@/components/OrderedList'
 
 Vue.use(Router)
 Vue.use(BootstrapVue)
@@ -56,6 +58,16 @@ export default new Router({
       path: '/cart',
       name: 'Cart',
       component: Cart
+    },
+    {
+      path: '/ordered',
+      name: 'Ordered',
+      component: Ordered
+    },
+    {
+      path: '/ordered/list',
+      name: 'OrderedList',
+      component: OrderedList
     },
     {
       path: '/mailcheck',
