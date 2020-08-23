@@ -15,13 +15,11 @@
           </b-nav-form>
 
           <b-navbar-nav>
-            <div v-if="!CheckLogin">
-              <b-nav-item href="/signup">Sign Up</b-nav-item>
-              <b-nav-item href="/signin">Login</b-nav-item>
-            </div>
-            <div v-if="CheckLogin">
-              <b-nav-item href="/cart">My Basket</b-nav-item>
-            </div>
+            <b-nav-item v-if="!CheckLogin" href="/signup">Sign Up</b-nav-item>
+            <b-nav-item v-if="!CheckLogin" href="/signin">Login</b-nav-item>
+            
+            <b-nav-item v-if="CheckLogin" href="/cart">My Cart</b-nav-item>
+            <b-nav-item v-if="CheckLogin" href="/ordered/list">Order History</b-nav-item>
           </b-navbar-nav>
         </b-navbar-nav>
       </b-collapse>
