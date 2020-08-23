@@ -2,6 +2,7 @@
     <div>
         <div class="mt-4">
             <b-alert :show="mail" variant="danger"><a href="/mailcheck/failed" class="alert-link">メールの確認が完了していません</a></b-alert>
+            <b-alert :show="!i_num">現在、カートに商品が入っていません。</b-alert>
             <div v-for="item in items" v-bind:key="item.ID">
                 <b-alert :show="item.Stock < item.Number" variant="danger">以下の商品の在庫に変更があり、購入ができません。</b-alert>
                 <b-card v-bind:style="{border: (item.Stock > item.Number ? '' : '1px solid red')}" id="card" :title="item.Name" img-src="https://placekitten.com/g/400/450" img-alt="Card image" img-left class="mb-3">
@@ -21,7 +22,7 @@
             </div>
         </div>
         <div id="btn_buy">
-            <b-button size="lg" v-if="!mail" v-on:click="buy" pill variant="primary">Buy!!</b-button>
+            <b-button size="lg" v-if="!check" v-on:click="orderedItem" pill variant="primary">Ordered</b-button>
         </div>
     </div>
 </template>
@@ -33,7 +34,9 @@ export default {
     data () {
         return {
             items: [],
-            mail: false
+            mail: false,
+            i_num: true,
+            check: false
         }
     },
     mounted () {
@@ -65,6 +68,7 @@ export default {
                     var resp = responce.data
                     if (resp != 1) {
                         this.mail = true
+                        this.check = true
                     }
                 })
                 .catch(error => {
@@ -73,33 +77,13 @@ export default {
                 })
             }
         }
+        var a = this.items.length
+        if (a == 0) {
+            this.check = true
+            this.i_num = false
+        }
     },
     methods: {
-        buy() {
-            var cookies = document.cookie;
-            var cookieArray = cookies.split(';');
-            for (var c of cookieArray) {
-                var cArray = c.split('=');
-                if (cArray[0] == 'token') {
-                    var axios = Axios.create({
-                        baseURL: 'http://localhost:8080',
-                        headers: {
-                            'Authorization': 'Bearer ' + cArray[1],
-                            'Content-Type': 'application/json',
-                        }
-                    })
-                    
-                    axios.post('/auth/ordered')
-                    .then(responce => {
-                        window.location.href = "/buy"
-                    })
-                    .catch(error => {
-                        console.log(error)
-                        window.location.href = '/signin'
-                    })
-                }
-            }
-        },
         deleteCart: function (item_id) {
             var cookies = document.cookie;
             var cookieArray = cookies.split(';');
@@ -121,6 +105,32 @@ export default {
                     .then(responce => {
                         window.alert("削除に成功しました")
                         location.reload()
+                    })
+                    .catch(error => {
+                        console.log(error)
+                        window.alert("削除に失敗しました")
+                    })
+                }
+            }
+        },
+        orderedItem: function () {
+            var cookies = document.cookie;
+            var cookieArray = cookies.split(';');
+            for (var c of cookieArray) {
+                var cArray = c.split('=');
+                if (cArray[0] == 'token') {
+                    var axios = Axios.create({
+                        baseURL: 'http://localhost:8080',
+                        headers: {
+                            'Authorization': 'Bearer ' + cArray[1],
+                            'Content-Type': 'application/json',
+                        },
+                        responseType: 'json'
+                    })
+                    
+                    axios.post('/auth/cart/ordered')
+                    .then(responce => {
+                        window.location.href = "/ordered"
                     })
                     .catch(error => {
                         console.log(error)
