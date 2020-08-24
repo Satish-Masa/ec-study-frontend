@@ -11,7 +11,7 @@
         <label for="sb-inline" class="price">Number of Products</label>
         <b-form-spinbutton id="sb-inline" v-model="value" min="1" :max="item.Stock" inline></b-form-spinbutton>
         <div id="btn">
-            <b-button size="lg" pill v-on:click="AddCart" variant="primary">Add to Your Cart</b-button>
+            <b-button size="lg" v-if="item.Stock > 0" pill v-on:click="AddCart" variant="primary">Add to Your Cart</b-button>
         </div>
       </div>
     </b-card>
