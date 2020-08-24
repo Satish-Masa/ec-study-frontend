@@ -12,7 +12,7 @@
                   Stock: {{item.Stock}}         Price：${{item.Price}}
               </p>
               <div slot="footer">
-                  <b-btn :to="`/item/${ item.ID }`" v-if="item.Stock > 0" variant="primary" block>Check!!</b-btn>
+                  <b-btn :to="`/item/${ item.ID }`" variant="primary" block>Check!!</b-btn>
               </div>
           </b-card>
         </b-col>
