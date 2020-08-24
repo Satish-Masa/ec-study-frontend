@@ -2,10 +2,10 @@
     <div>
         <div class="mt-4">
             <b-alert :show="mail" variant="danger"><a href="/mailcheck/failed" class="alert-link">メールの確認が完了していません</a></b-alert>
-            <b-alert :show="!i_num">現在、カートに商品が入っていません。</b-alert>
+            <b-alert :show="i_num">現在、カートに商品が入っていません。</b-alert>
             <div v-for="item in items" v-bind:key="item.ID">
                 <b-alert :show="item.Stock < item.Number" variant="danger">以下の商品の在庫に変更があり、購入ができません。</b-alert>
-                <b-card v-bind:style="{border: (item.Stock > item.Number ? '' : '1px solid red')}" id="card" :title="item.Name" img-src="https://placekitten.com/g/400/450" img-alt="Card image" img-left class="mb-3">
+                <b-card v-bind:style="{border: (item.Stock >= item.Number ? '' : '1px solid red')}" id="card" :title="item.Name" img-src="https://placekitten.com/g/400/450" img-alt="Card image" img-left class="mb-3">
                     <b-card-text id="desc">
                         {{item.Description}}
                     </b-card-text>
@@ -35,7 +35,7 @@ export default {
         return {
             items: [],
             mail: false,
-            i_num: true,
+            i_num: false,
             check: false
         }
     },
@@ -57,6 +57,10 @@ export default {
                 axios.post('auth/cart')
                 .then(responce => {
                     this.items = responce.data
+                    if (responce.status == 204) {
+                        this.check = true
+                        this.i_num = true
+                    }
                 })
                 .catch(error => {
                     console.log(error)
@@ -76,11 +80,6 @@ export default {
                     window.location.href = '/signin'
                 })
             }
-        }
-        var a = this.items.length
-        if (a == 0) {
-            this.check = true
-            this.i_num = false
         }
     },
     methods: {
