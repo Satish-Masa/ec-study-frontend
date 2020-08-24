@@ -2,7 +2,7 @@
     <div>
         <div class="mt-4">
             <div v-for="item in items" v-bind:key="item.ID">
-                <b-card id="card" :title="item.Name" img-src="https://placekitten.com/g/400/450" img-alt="Card image" img-left class="mb-3">
+                <b-card id="card" :title="item.Name" :sub-title="item.Created_at" img-src="https://placekitten.com/g/400/450" img-alt="Card image" img-left class="mb-3">
                     <b-card-text id="desc">
                         {{item.Description}}
                     </b-card-text>
