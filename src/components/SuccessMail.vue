@@ -14,20 +14,27 @@ export default {
     name: 'SuccessMail',
     
     mounted() {
-        var axios = Axios.create({
-            baseURL: 'http://localhost:8080',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            responseType: 'json'
-        })
-        axios.post('/auth/mailcheck', {
-            "token": this.$route.query.token,
-            "email": this.$route.query.mail
-        })
-        .catch(function(error) {
-            window.location.href = "/mailcheck/failed"
-        })
+        var cookies = document.cookie;
+        var cookieArray = cookies.split(';');
+        for (var c of cookieArray) {
+            var cArray = c.split('=')
+            if (cArray[0] == 'token') {
+                var axios = Axios.create({
+                    baseURL: 'http://localhost:8080',
+                    headers: {
+                        'Authorization': 'Bearer ' + cArray[1],
+                        'Content-Type': 'application/json',
+                    },
+                    responseType: 'json'
+                })
+                axios.post('/auth/mailcheck', {
+                    "token": this.$route.query.token,
+                })
+                .catch(function(error) {
+                    window.location.href = "/mailcheck/failed"
+                })
+            }
+        }
     }
 }
 </script>
