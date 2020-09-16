@@ -1,31 +1,10 @@
-# ec-frontend
+# Easy EC Site (FrontEnd)
 
-> A Vue.js project
+## 概要・目的
+簡易的なEC Siteを作成しました。このリポジトリはフロントエンドです。  
+Webアプリケーション開発の経験を積むためと、Webアプリケーションについての知識を身につけるために取り組みました。  
+フロントエンドでは、APIからデータを取得し、表示させています。  
 
-## Build Setup
-
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-
-# run unit tests
-npm run unit
-
-# run e2e tests
-npm run e2e
-
-# run all tests
-npm test
-```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
-
+## 主な技術
+・メイン言語：Javascript
+・フレームワーク：Vue.js
